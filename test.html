@@ -1,32 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Basic Vue Js - HelloWorld App</title>
 
-        <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
-        <!-- Using via Google Web Fonts -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
 
-        <!-- https://tailwindcss.com/docs/installation -->
-        <!-- Using Tailwind via CDN -->
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-      
-        <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
-        <!-- Vue CDN -->
-        <script src="https://unpkg.com/vue@next"></script>
+  <style>
+    .tailwindcanthoverbold {
+      text-decoration: none;
+      color: black;
+    }
 
-      </head>
-      <body>
-        <div id="app" class="h-screen w-full bg-gray-200 flex items-start justify-start">
-          <img src="./images/1.png" class="w-1/3 h-full">
-          <div class="w-full flex items-center justify-end">      
-            <i class="material-icons">face</i>      
-            <p class="font-semibold text-xl tracking-wider uppercase px-3"> {{msg}}</p>      
-          </div>      
-        </div>     
-        <!-- my main.js -->
-        <script src="./main.js"></script>
-      </body>
+    .tailwindcanthoverbold:hover {
+      font-weight: 1000;
+    }
+
+    .xkb {
+      color: #000000;
+      font-size: 1.1em;
+      position: relative;
+    }
+
+    .xkb:hover {
+      color: #000000;
+    }
+
+    .xkb::after {
+      box-sizing: inherit;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      background-color: #000000;
+      color: transparent;
+      width: 0%;
+      content: '';
+      height: 2px;
+      transition: all 0.2s;
+    }
+
+    .xkb:hover::after {
+      width: 100%;
+    }
+    
+    /* Carousel */
+
+			.carousel-open:checked + .carousel-item {
+				position: static;
+				opacity: 100;
+			}
+			.carousel-item {
+				-webkit-transition: opacity 0.6s ease-out;
+				transition: opacity 0.6s ease-out;
+			}
+			#carousel-1:checked ~ .control-1,
+			#carousel-2:checked ~ .control-2,
+			#carousel-3:checked ~ .control-3,
+      #carousel-4:checked ~ .control-4 {
+				display: block;
+			}
+			.carousel-indicators {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				bottom: 20%;
+				left: 0;
+				right: 4%;
+				text-align: end;
+				z-index: 10;
+			}
+			#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+			#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+			#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet,
+      #carousel-4:checked ~ .control-4 ~ .carousel-indicators li:nth-child(4) .carousel-bullet {
+				color: black;
+        transform: scale(1.5);
+			}
+
+    
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet">
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body style="font-family: 'Roboto', sans-serif;">
+  <div id="app" class="h-screen">
+    <!-- NAVBAR -->
+    <div class="bg-gray-200 p-1">
+      <nav class="flex justify-between">
+        <div>
+          <a href="#" class="ml-8 text-sm">
+            <i class="material-icons text-sm mr-2">expand_more</i>
+            International version
+          </a>
+          <a href="#" class="ml-8 text-sm">
+            <i class="material-icons-outlined text-sm mr-2">local_phone</i>
+            Customer Service
+          </a>
+          <a href="#" class="ml-8 text-sm">
+            <i class="material-icons-outlined text-sm mr-2">location_on</i>
+            Bontiques
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <div class="flex justify-between">
+
+      <div
+        class="ml-16 mt-5 w-72 h-10 pl-3 pr-2 bg-white border border-black rounded-full flex justify-between items-center relative">
+        <input type="text" name="search" id="search" placeholder="What are you looking for?"
+          class="appearance-none w-full outline-none focus:outline-none active:outline-none text-base ml-2" />
+        <button type="submit" class="ml-1 outline-none focus:outline-none active:outline-none mr-2">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" class="w-6 h-6">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+      </div>
+      <a href="#"><svg viewBox="0 0 500 138.3" class="h-20 w-32 mr-12">
+          <path d="M1.5 2.7h64.2c55.2 0 76.8 32.4 76.8 66.7 0 34.9-27.7 66-80.4 66H1.6c-1.1 0-1.5-.7-1.5-1.3 0-.7.7-1.3 1.7-1.3h11.3c3.5 
+                0 5.8-2.1 5.8-6V11.5c0-2.9-1.4-6.1-6-6.1H1.4C.5 5.4 0 4.8 0 4.1c0-.6.2-1.4 1.5-1.4m40.1 126.5c0 2.9 1.3 3.8 3.2 3.8h17c41.9 0 57.1-32.1 57.1-64.3S102.8 5.3 
+                67.4 5.3H44.3c-2.4 0-2.6 2-2.6 2.9l-.1 121zM148.9 2.7c-1 0-1.9.4-1.9 1.2 0 .8.5 1.3 1.4 1.3h11.3c2.6 0 5.1 1.8 5.1 6.8v114.9c0 2.4-1.8 6-5 6h-11.2c-1.3 0-1.4 
+                1-1.4 1.4 0 .4-.1 1.1 1.4 1.1H203c.8 0 1.9-.1 1.9-.9s-.2-1.6-1.6-1.6h-10.5c-1.5 0-5.6-.9-5.6-5.5V10.8c0-3.3 2.1-5.5 5.9-5.5h10.3c.9 0 1.4-.5 1.4-1.2s-.5-1.3-1.7-1.3h-54.2zm85 
+                66.4c0-36.7 16.4-66.4 47.2-66.4 30.2 0 47.2 29.7 47.2 66.4s-15.5 66.4-47.2 66.4c-30.7.1-47.2-29.7-47.2-66.4m47.2 69.2c43.8 0 71.4-31 71.4-69.1S325.2 0 281.1 0c-44 0-71.4 31-71.4
+                 69.1s28.5 69.2 71.4 69.2m211.4-3.7c-17.2 1.8-26.7-26.4-35.4-39.8-6.5-9.9-20.3-20-33.9-22 22.4-1.3 47.5-8.5 47.5-33.9 0-20.6-12.7-36.2-59.3-36.2h-53.7c-.7 0-1.4.4-1.4 1.2 0 .8.7 1.3 
+                 1.4 1.3H370c2.6 0 5.1 1.8 5.1 6.8v114.9c0 2.4-1.8 6-5 6H358c-1 0-1.4.8-1.4 1.2s.4 1.3 1.4 1.3h57c.8 0 1.5-.4 1.5-1.2 0-.8-.5-1.3-1.6-1.3h-11.5c-1.5 0-5.6-1-5.6-5.5V73.1h5.9c28.2 
+                 0 30.3 30.6 44.3 48.1 12 15 27.7 16.9 36.6 16.9 3.8 0 6.4-.1 8.8-.7 1.5-.5 1.8-3.1-.9-2.8m-89-129.4h8.3c14.2 0 37.2 5.6 37.2 32.4 0 24.6-20.4 32.9-39.3 32.9h-12.1V10.8c0-3.4 2.1-5.6 
+                 5.9-5.6"></path>
+        </svg>
+      </a>
+      <div class="mr-80"></div>
+    </div>
+
+    <div class="p-1">
+      <nav class="flex justify-center mt-1 mr-16 font-medium ">
+        <div class="pb-2">
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            WOMEN'S FASION
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            MEN'S FASION
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            FRAGRANCE
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            MAKE-UP
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            SKINCARE
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            KID & BABY
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            MAISON
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            GIFTS & SERVICES
+          </a>
+          <a href="#" class="ml-12 text-xs tailwindcanthoverbold xkb pb-5">
+            NEWS & SAVOIR-FAIRE
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="carousel bg-white w-9/12 m-auto pt-5 border-t">
+      <div class="carousel-inner relative overflow-hidden w-full ">
+        <!--Slide 1-->
+        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+        <div class="carousel-item absolute opacity-0" style="height:85vh;">
+          <div class="block h-full w-full">
+            <img src="./images/1.jpg">
+            <a href="#">
+            <div class="font-thin text-sm text-gray-500 pt-5">
+              Fragrance
+            </div>
+            <div class="font-medium text-3xl text-black pt-2">
+              TOILE DE JOUY COLLECTION IN LIMITED EDITION
+            </div>
+            <div class="mt-3 w-52 h-12 bg-white border border-black rounded-full flex justify-center items-center tailwindcanthoverbold">
+              Discover
+            </div>
+            </a>
+          </div>
+        </div>
+        <label for="carousel-4" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -left-1 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -right-3 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform -rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        
+        <!--Slide 2-->
+        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item absolute opacity-0" style="height:85vh;">
+          <div class="block h-full w-full">
+            <img src="./images/2.jpg">
+            <a href="#">
+              <div class="font-thin text-sm text-gray-500 pt-5">
+                Men's Fashion
+              </div>
+              <div class="font-medium text-3xl text-black pt-2">
+                SUMMER 2021 PRE-LAUNCH
+              </div>
+              <div class="mt-3 w-52 h-12 bg-white border border-black rounded-full flex justify-center items-center tailwindcanthoverbold">
+                Discover
+              </div>
+              </a>
+          </div>
+        </div>
+        <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -left-1 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -right-3 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform -rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label> 
+        
+        <!--Slide 3-->
+        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item absolute opacity-0" style="height:85vh;">
+          <div class="block h-full w-full">
+            <img src="./images/3.jpg">
+            <a href="#">
+              <div class="font-thin text-sm text-gray-500 pt-5">
+                Make-Up
+              </div>
+              <div class="font-medium text-3xl text-black pt-2">
+                ROUGE DIOR THE NEW COUTURE LIPSTICK
+              </div>
+              <div class="mt-3 w-52 h-12 bg-white border border-black rounded-full flex justify-center items-center tailwindcanthoverbold">
+                Discover
+              </div>
+              </a>
+          </div>
+        </div>
+        <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -left-1 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <label for="carousel-4" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -right-3 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform -rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <!-- Slide 4 -->
+        <input class="carousel-open" type="radio" id="carousel-4" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item absolute opacity-0" style="height:85vh;">
+          <div class="block h-full w-full">
+            <img src="./images/4.jpg">
+            <a href="#">
+              <div class="font-thin text-sm text-gray-500 pt-5">
+                Women's Fashion
+              </div>
+              <div class="font-medium text-3xl text-black pt-2">
+                GIFTS FOR HER
+              </div>
+              <div class="mt-3 w-52 h-12 bg-white border border-black rounded-full flex justify-center items-center tailwindcanthoverbold">
+                Discover
+              </div>
+              </a>
+          </div>
+        </div>
+        <label for="carousel-3" class="prev control-4 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -left-1 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <label for="carousel-1" class="next control-4 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black leading-tight text-center z-10 inset-y-0 -right-3 my-80">
+          <svg viewBox="0 0 129 129" class="w-5 h-5 transform -rotate-90">
+            <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"></path>
+          </svg>
+        </label>
+        <!-- Add additional indicators for each slide-->
+        <ol class="carousel-indicators">  
+          <li class="inline-block mr-1">
+            <label for="carousel-1" class="carousel-bullet cursor-pointer block text-3xl text-gray-500">•</label>
+          </li>
+          <li class="inline-block mr-1">
+            <label for="carousel-2" class="carousel-bullet cursor-pointer block text-3xl text-gray-500">•</label>
+          </li>
+          <li class="inline-block mr-1">
+            <label for="carousel-3" class="carousel-bullet cursor-pointer block text-3xl text-gray-500">•</label>
+          </li>
+          <li class="inline-block mr-1">
+            <label for="carousel-4" class="carousel-bullet cursor-pointer block text-3xl text-gray-500">•</label>
+          </li>
+        </ol>
+        
+      </div>
+    </div>
+  </div>
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
 </html>
